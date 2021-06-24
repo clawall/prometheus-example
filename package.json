@@ -1,0 +1,19 @@
+{
+  "name": "prometheus-teste",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "prom-client": "^13.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.29.0"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "prom": "docker run -d --name=prom -v /Users/cesarluislawallsilveira/estudo/prometheus-teste/promcfg/:/etc/prometheus/ -p 9000:9000 -p 9090:9090 prom/prometheus",
+    "grafana": "docker run -d -v grafana-storage:/var/lib/grafana -e \"GF_INSTALL_PLUGINS=https://grafana.com/api/plugins/briangann-gauge-panel/versions/0.0.9/download;briangann-gauge-panel,grafana-clock-panel\" --name=grafana -p 3000:3000 grafana/grafana",
+    "metrics": "docker stop prom;docker stop grafana;docker rm prom; docker rm grafana;yarn prom;yarn grafana"
+  }
+}
